@@ -1,4 +1,5 @@
 let lose = false;
+let score = 0;
 
 function startGame() {
     document.getElementById('status').innerText = "Begin by moving your mouse over the \"S\".";
@@ -11,15 +12,16 @@ function startGame() {
 
 function endGame() {
     if(lose) {
-        document.getElementById('status').innerText = "You Lost!";
+        score -= 10;
+        document.getElementById('status').innerText = "You Lost! Your Score is: "+ score;
     } else {
-        document.getElementById('status').innerText = "You Won!";
+        score += 5;
+        document.getElementById('status').innerText = "You Won! Your Score is: " + score;
     }
 }
 
 function overBoundaries() {
     lose = true;
-    document.getElementById('status').innerText = "You Lost!";
     var boundaries = document.querySelectorAll('.boundary');
     for(var i = 0; i < boundaries.length; i ++) {
         boundaries[i].classList.add("lose");
