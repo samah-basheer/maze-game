@@ -19,6 +19,7 @@ function endGame() {
 
 function overBoundaries() {
     lose = true;
+    document.getElementById('status').innerText = "You Lost!";
     var boundaries = document.querySelectorAll('.boundary');
     for(var i = 0; i < boundaries.length; i ++) {
         boundaries[i].classList.add("lose");
