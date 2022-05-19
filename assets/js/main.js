@@ -4,6 +4,9 @@ let start = 0;
 let end = false;
 
 function startGame() {
+    if(lose) {
+        score -= 10;
+    }
     start = 1;
     end = false;
     document.getElementById('status').innerText = "Begin by moving your mouse over the \"S\".";
