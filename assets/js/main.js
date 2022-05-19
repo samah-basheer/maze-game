@@ -5,6 +5,7 @@ let end = false;
 
 function startGame() {
     start = 1;
+    end = false;
     document.getElementById('status').innerText = "Begin by moving your mouse over the \"S\".";
     lose = false;
     var boundaries = document.querySelectorAll('.boundary');
