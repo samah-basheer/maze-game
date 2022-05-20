@@ -1,14 +1,14 @@
-let lose = false;
+let loser = false;
 let score = 0;
 let start = false;
 
 function startGame() {
-    if(lose) {
+    if(loser) {
         score -= 10;
     }
     start = true;
     document.getElementById('status').innerText = "Begin by moving your mouse over the \"S\".";
-    lose = false;
+    loser = false;
     var boundaries = document.querySelectorAll('.boundary');
     for(var i = 0; i < boundaries.length; i ++) {
         boundaries[i].classList.remove("lose");
@@ -20,7 +20,7 @@ function startGame() {
 
 function endGame() {
     if(start) {
-        if(lose) {
+        if(loser) {
             score -= 10;
             document.getElementById('status').innerText = "You Lost! Your Score is: "+ score;
         } else {
@@ -33,7 +33,7 @@ function endGame() {
 
 function overBoundaries() {
     if(start) {
-        lose = true;
+        loser = true;
         document.getElementById('status').innerText = "You Lost!";
         var boundaries = document.querySelectorAll('.boundary');
         for(var i = 0; i < boundaries.length; i ++) {
