@@ -1,11 +1,22 @@
 let loser = false;
 let score = 0;
 let start = false;
+var timerVariable;
+var last;
+var best;
+var temp;
+var totalSeconds;
+var hour;
+var minute;
+var seconds;
 
 function startGame() {
     if(loser) {
         score -= 10;
     }
+    totalSeconds = 0;
+    timerVariable = setInterval(countUpTimer, 1000);
+
     start = true;
     document.getElementById('status').innerText = "Begin by moving your mouse over the \"S\".";
     loser = false;
@@ -28,6 +39,13 @@ function endGame() {
             document.getElementById('status').innerText = "You Won! Your Score is: " + score;
         }
         start = false;
+        clearInterval(timerVariable);
+        last = hour + ":" + minute + ":" + seconds;
+        (temp < last) ? best = temp : best = last;
+        temp = best;
+        document.getElementById("live").innerHTML = "0:0:0";
+        document.getElementById("last").innerHTML = hour + ":" + minute + ":" + seconds;
+        document.getElementById("best").innerHTML = best;
     }
 }
 
@@ -56,3 +74,11 @@ endBtn.onmouseover = endGame;
 
 var leaveGame = document.getElementById('game');
 leaveGame.onmouseleave = cheating;
+
+function countUpTimer() {
+    ++totalSeconds;
+    hour = Math.floor(totalSeconds / 3600);
+    minute = Math.floor((totalSeconds - hour * 3600) / 60);
+    seconds = totalSeconds - (hour * 3600 + minute * 60);
+    document.getElementById("live").innerHTML = hour + ":" + minute + ":" + seconds;
+}
