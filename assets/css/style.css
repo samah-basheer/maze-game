@@ -113,3 +113,12 @@ neighboring elements.  Necessary to avoid giving ids to the boundary divs
 div.lose {
 	background-color: red;
 }
+.stats {
+	display: flex;
+	justify-content: center;
+	align-items: center;
+}
+.stats > div {
+	padding-left: 4%;
+	padding-right: 4%;
+}
