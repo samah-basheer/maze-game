@@ -39,13 +39,14 @@ function endGame() {
             document.getElementById('status').innerText = "You Won! Your Score is: " + score;
         }
         start = false;
+
         clearInterval(timerVariable);
-        last = hour + ":" + minute + ":" + seconds;
+        last = hour*3600 + minute*60 + seconds;
         (temp < last) ? best = temp : best = last;
         temp = best;
         document.getElementById("live").innerHTML = "0:0:0";
-        document.getElementById("last").innerHTML = hour + ":" + minute + ":" + seconds;
-        document.getElementById("best").innerHTML = best;
+        document.getElementById("last").innerHTML = timeFormat(totalSeconds);
+        document.getElementById("best").innerHTML = timeFormat(best);
     }
 }
 
@@ -77,8 +78,12 @@ leaveGame.onmouseleave = cheating;
 
 function countUpTimer() {
     ++totalSeconds;
-    hour = Math.floor(totalSeconds / 3600);
-    minute = Math.floor((totalSeconds - hour * 3600) / 60);
-    seconds = totalSeconds - (hour * 3600 + minute * 60);
-    document.getElementById("live").innerHTML = hour + ":" + minute + ":" + seconds;
+    document.getElementById("live").innerHTML = timeFormat(totalSeconds);
+}
+
+function timeFormat(sec) {
+    hour = Math.floor(sec / 3600);
+    minute = Math.floor((sec - hour * 3600) / 60);
+    seconds = sec - (hour * 3600 + minute * 60);
+    return hour + ":" + minute + ":" + seconds;
 }
